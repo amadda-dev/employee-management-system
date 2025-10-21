@@ -1,7 +1,9 @@
 package com.java_project.employee_management_system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -23,6 +25,14 @@ public class Employee {
     private String email;
 
     private String jobTitle;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    @JsonIgnore
+    @ToString.Exclude
+    private Department department;
+
 
 }
 

@@ -1,6 +1,6 @@
 package com.java_project.employee_management_system.service.implementation;
 
-import com.java_project.employee_management_system.entity.Employee;
+import com.java_project.employee_management_system.dto.EmployeeDto;
 import com.java_project.employee_management_system.repository.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,12 +22,12 @@ public class EmployeeServiceImplementationTest {
     @InjectMocks
     private EmployeeServiceImplementation employeeService;
 
-    private Employee employee;
+    private EmployeeDto employee;
 
 
     @BeforeEach
     void setUp() {
-        employee = new Employee();
+        employee = new EmployeeDto();
         employee.setId(1L);
         employee.setFirstName("Test");
         employee.setLastName("User");
@@ -36,9 +36,9 @@ public class EmployeeServiceImplementationTest {
     @DisplayName("Employee Test")
     @Test
     void testCreateEmployee_ShouldReturnSavedEmployee() {
-        when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
+        when(employeeRepository.save(any(EmployeeDto.class))).thenReturn(employee);
 
-        Employee savedEmployee = employeeService.createEmployee(employee);
+        EmployeeDto savedEmployee = employeeService.createEmployee(employee);
 
         Assertions.assertNotNull(savedEmployee);
         Assertions.assertEquals("Test", savedEmployee.getFirstName());
